@@ -35,7 +35,7 @@ def DivideDataset(dataset):
 
 def DecisionTree(dataset):
 
-    (train_inputs, test_inputs, train_classes, test_classes) = DivideDataset(dataset)
+    (train_inputs, test_inputs, train_classes, test_classes) = dataset
     
     dtc = tree.DecisionTreeClassifier()
     dtc.fit(train_inputs, train_classes)
@@ -46,8 +46,7 @@ def DecisionTree(dataset):
 
 def KNN(dataset):
 
-
-    (train_inputs, test_inputs, train_classes, test_classes) = DivideDataset(dataset)
+    (train_inputs, test_inputs, train_classes, test_classes) = dataset
 
     k = [3, 5, 11]
     for neighbours in k:
@@ -61,7 +60,7 @@ def KNN(dataset):
 
 def Naive_Bayes(dataset):
 
-    (train_inputs, test_inputs, train_classes, test_classes) = DivideDataset(dataset)
+    (train_inputs, test_inputs, train_classes, test_classes) = dataset
     
     bayes = GaussianNB()
     bayes.fit(train_inputs, train_classes)
@@ -74,6 +73,7 @@ def Naive_Bayes(dataset):
 if __name__ == '__main__':
     df = pd.read_csv("./iris.csv")
     iris_classification(df)
-    DecisionTree(df)
-    KNN(df)
-    Naive_Bayes(df)    
+    div_dataset = DivideDataset(df)
+    DecisionTree(div_dataset)
+    KNN(div_dataset)
+    Naive_Bayes(div_dataset)    
